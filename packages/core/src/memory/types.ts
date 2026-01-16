@@ -1,6 +1,6 @@
 import type { AssistantContent, CoreMessage, ToolContent, UserContent } from '@internal/ai-sdk-v4';
 import type { JSONSchema7 } from 'json-schema';
-import type { ZodObject } from 'zod';
+import type { ZodObject } from 'zod-v3';
 
 export type { MastraDBMessage } from '../agent';
 import type { EmbeddingModelId } from '../llm/model/index.js';
@@ -120,7 +120,7 @@ type TemplateWorkingMemory = BaseWorkingMemory & {
 };
 
 type SchemaWorkingMemory = BaseWorkingMemory & {
-  schema: ZodObject<any> | JSONSchema7;
+  schema: PublicSchema;
   template?: never;
 };
 

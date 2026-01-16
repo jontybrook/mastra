@@ -1,4 +1,4 @@
-import z from 'zod';
+import z from 'zod-v3';
 import type { Mastra } from '../..';
 import type { AgentExecutionOptions } from '../../agent';
 import type { MultiPrimitiveExecutionOptions } from '../../agent/agent.types';

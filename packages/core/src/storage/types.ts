@@ -1,4 +1,4 @@
-import type { z } from 'zod';
+import type { z } from 'zod-v3';
 import type { SerializedError } from '../error';
 import type { MastraDBMessage, StorageThreadType } from '../memory/types';
 import { getZodTypeName } from '../utils/zod-utils';

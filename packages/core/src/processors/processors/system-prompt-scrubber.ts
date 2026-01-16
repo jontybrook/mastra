@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from 'zod-v3';
 import { Agent, isSupportedLanguageModel } from '../../agent';
 import type { MastraDBMessage } from '../../agent/message-list';
 import type { MastraModelConfig } from '../../llm/model/shared.types';

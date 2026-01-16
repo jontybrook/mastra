@@ -56,7 +56,7 @@ function convertToJsonSchema<T extends ZodType<any, ZodTypeDef, any>>(
  *
  * @example
  * ```typescript
- * import { z } from 'zod';
+ * import { z } from 'zod-v3';
  * import { toStandardSchema } from '@mastra/core/schema/adapters/zod-v3';
  *
  * const userSchema = z.object({

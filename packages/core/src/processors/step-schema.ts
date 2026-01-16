@@ -4,8 +4,7 @@ import { z } from 'zod';
 import type { MastraMessageContentV2, MessageList } from '../agent/message-list';
 import type { ModelRouterModelId } from '../llm/model';
 import type { MastraLanguageModel, OpenAICompatibleConfig, SharedProviderOptions } from '../llm/model/shared.types';
-import type { OutputSchema } from '../stream';
-import type { InferSchemaOutput } from '../stream/base/schema';
+import type { InferStandardSchemaOutput, StandardSchemaWithJSON } from '../schema/schema';
 import type { StructuredOutputOptions } from './processors';
 
 // =========================================================================
@@ -359,7 +358,7 @@ export const ProcessorInputStepPhaseSchema = z.object({
     .optional()
     .describe('Model settings (temperature, etc.)'),
   structuredOutput: z
-    .custom<StructuredOutputOptions<InferSchemaOutput<OutputSchema>>>()
+    .custom<StructuredOutputOptions<InferStandardSchemaOutput<StandardSchemaWithJSON>>>()
     .optional()
     .describe('Structured output configuration'),
   steps: z.custom<Array<StepResult<ToolSet>>>().optional().describe('Results from previous steps'),
@@ -467,7 +466,7 @@ export const ProcessorStepOutputSchema = z.object({
   activeTools: z.array(z.string()).optional(),
   providerOptions: z.custom<SharedProviderOptions>().optional(),
   modelSettings: z.custom<Omit<CallSettings, 'abortSignal'>>().optional(),
-  structuredOutput: z.custom<StructuredOutputOptions<InferSchemaOutput<OutputSchema>>>().optional(),
+  structuredOutput: z.custom<StructuredOutputOptions<InferStandardSchemaOutput<StandardSchemaWithJSON>>>().optional(),
   steps: z.custom<Array<StepResult<ToolSet>>>().optional(),
 });
 

@@ -13,7 +13,8 @@ import type { ValidationResult } from '../aisdk/v5/compat';
 import { ChunkFrom } from '../types';
 import type { ChunkType } from '../types';
 import { getTransformedSchema } from './schema';
-import type { OutputSchema, ZodLikePartialSchema } from './schema';
+import type { ZodLikePartialSchema } from './schema';
+import type { StandardSchemaWithJSON } from '../../schema/schema';
 
 /**
  * Escapes unescaped newlines, carriage returns, and tabs within JSON string values.
@@ -123,14 +124,14 @@ abstract class BaseFormatHandler<OUTPUT = undefined> {
   /**
    * The original user-provided schema (Zod, JSON Schema, or AI SDK Schema).
    */
-  readonly schema: OutputSchema<OUTPUT> | undefined;
+  readonly schema: StandardSchemaWithJSON<OUTPUT> | undefined;
   /**
    * Validate partial chunks as they are streamed. @planned
    */
   readonly validatePartialChunks: boolean = false;
   readonly partialSchema?: ZodLikePartialSchema<OUTPUT> | undefined;
 
-  constructor(schema?: OutputSchema<OUTPUT>, options: { validatePartialChunks?: boolean } = {}) {
+  constructor(schema?: StandardSchemaWithJSON<OUTPUT>, options: { validatePartialChunks?: boolean } = {}) {
     this.schema = schema;
 
     if (
@@ -542,7 +543,7 @@ class EnumFormatHandler<OUTPUT = undefined> extends BaseFormatHandler<OUTPUT> {
  * @param transformedSchema - Wrapped/transformed schema used for LLM generation (arrays wrapped in {elements: []}, enums in {result: ""})
  * @returns Handler instance for the detected format type
  */
-function createOutputHandler<OUTPUT = undefined>({ schema }: { schema?: OutputSchema<OUTPUT> }) {
+function createOutputHandler<OUTPUT = undefined>({ schema }: { schema?: StandardSchemaWithJSON<OUTPUT> }) {
   const transformedSchema = getTransformedSchema(schema);
   switch (transformedSchema?.outputFormat) {
     case 'array':
@@ -685,7 +686,7 @@ export function createObjectStreamTransformer<OUTPUT = undefined>({
  * - For arrays: emits opening bracket, new elements, and closing bracket
  * - For objects/no-schema: emits the object as JSON
  */
-export function createJsonTextStreamTransformer<OUTPUT = undefined>(schema?: OutputSchema<OUTPUT>) {
+export function createJsonTextStreamTransformer<OUTPUT = undefined>(schema?: StandardSchemaWithJSON<OUTPUT>) {
   let previousArrayLength = 0;
   let hasStartedArray = false;
   let chunkCount = 0;

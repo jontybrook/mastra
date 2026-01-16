@@ -43,7 +43,11 @@ export type {
   ReadonlyJSONValue,
 } from './types';
 
+/**
+ * @deprecated Use StandardSchemaWithJSON from '../schema/schema' instead
+ */
 export type { OutputSchema, PartialSchemaOutput, SchemaWithValidation, InferSchemaOutput } from './base/schema';
+export type { StandardSchemaWithJSON, InferStandardSchemaOutput } from '../schema/schema';
 export type { FullOutput } from './base/output';
 
 // ============================================================================
