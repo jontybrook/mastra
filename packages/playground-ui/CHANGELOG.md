@@ -1,5 +1,16 @@
 # @mastra/playground-ui
 
+## 7.0.2-alpha.0
+
+### Patch Changes
+
+- Fix link to evals documentation ([#12122](https://github.com/mastra-ai/mastra/pull/12122))
+
+- Updated dependencies [[`1cf5d2e`](https://github.com/mastra-ai/mastra/commit/1cf5d2ea1b085be23e34fb506c80c80a4e6d9c2b)]:
+  - @mastra/core@1.0.5-alpha.0
+  - @mastra/client-js@1.0.2-alpha.0
+  - @mastra/react@0.1.2-alpha.0
+
 ## 7.0.1
 
 ### Patch Changes

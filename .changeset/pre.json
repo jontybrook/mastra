@@ -102,5 +102,8 @@
     "@mastra/voice-speechify": "0.12.0",
     "@mastra/inngest": "1.0.0"
   },
-  "changesets": []
+  "changesets": [
+    "automated-provider-registry-20260120-181618",
+    "bold-mails-stand"
+  ]
 }
